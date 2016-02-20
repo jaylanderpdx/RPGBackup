@@ -70,7 +70,7 @@ public class DropManager : MonoBehaviour {
     {
 
 
-        float radius = 2.0f;
+        //float radius = 2.0f;
         int count = list.totalDropsInList;
         Debug.Log(count);
 
