@@ -29,7 +29,7 @@ public class SpiderAi : MonoBehaviour {
 	// Update is called once per frame
 	void Update ()
     {
-	    if(meleeRange && InputController.Instance.isAttacking)
+	    if(meleeRange)
         {
           
             DropManager.instance.DropItemsFromList(gameObject.transform, drops);

@@ -7,7 +7,8 @@ public class MovementController : MonoBehaviour {
     public Vector3 moveDirection;
     public Vector3 facingDirection;
     public float moveSpeed;
-    public bool canMoveRightNow;
+    public bool isAttacking = false;
+    public bool waitForKeypress;
     private Rigidbody2D characterBody;
     // Use this for initialization
 
@@ -18,29 +19,27 @@ public class MovementController : MonoBehaviour {
     }
     void Start () {
 
-        canMoveRightNow = true;
-        facingDirection.Set(0f, 1f, 0f);
+     
+        facingDirection.Set(0f, -1f, 0f);
 	}
-	
+
+    public bool IsBusy()
+    {
+        return isAttacking || waitForKeypress;
+    }
+
 	void FixedUpdate()
     {
         UpdateMovement();
     }
-
-
-    public void DisableMovement()
-    {
-        canMoveRightNow = false;
-    }
-
-    public void EnableMovement()
-    {
-        canMoveRightNow = true;
-
-    }
-
+    
+    
     public void SetMoveDirection(Vector2 NewDirection)
     {
+
+        if (isAttacking)
+            return;
+
         moveDirection = new Vector3(NewDirection.x, NewDirection.y);
 
         if(moveDirection != Vector3.zero)
@@ -64,7 +63,7 @@ public class MovementController : MonoBehaviour {
 
         Rigidbody2D rbod = GetComponent<Rigidbody2D>();
 
-        if (canMoveRightNow)
+        if ( !waitForKeypress && !isAttacking)
         {
 
             if (moveDirection != Vector3.zero)

@@ -24,15 +24,15 @@ namespace Interactions
 
         }
 
-        public void DoInteraction()
+        public bool DoInteraction()
         {
             Interactable FoundAnInteraction = FindNearestInteractable();
 
             if (FoundAnInteraction)
-            {
-                Debug.Log(FoundAnInteraction.name);
-                FoundAnInteraction.OnInteract();
-            }
+                 FoundAnInteraction.OnInteract();
+
+            return (FoundAnInteraction == true);
+           
 
         }
         public Interactable FindNearestInteractable()
@@ -52,7 +52,6 @@ namespace Interactions
                     Vector3 Facing = movementController.GetFacingDirection();
                     Vector3 Difference = col.transform.position - transform.position;
                     float AnglePlayerFacingToInteraction = Vector2.Angle(Difference, Facing);
-                   // Vector2.Angle(Difference, Facing);
                     if (AnglePlayerFacingToInteraction < interactionFOV) //is the interaction in Field of View?
                     {
                         if (AnglePlayerFacingToInteraction < BestViewAngle)

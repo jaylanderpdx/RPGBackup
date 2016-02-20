@@ -10,9 +10,8 @@ public class InputController : MonoBehaviour {
     InteractionController interactionController;
     Animator anim;
     public static InputController Instance;
-    public bool isAttacking;
   
-
+  
     float attackSpeed;
     float attackTimer;
 
@@ -30,59 +29,92 @@ public class InputController : MonoBehaviour {
     }
 
     
+    void SetMovement(Vector2 mov)
+    {
+
+        anim.SetFloat("move_x", mov.x);
+        anim.SetFloat("move_y", mov.y);
+        
+    }
+
+
+    void StopWalkingAnimation( Vector2 Facing)
+    {
+        SetMovement(Facing);
+        anim.SetBool("walking", false);
+
+    }
+
     void UpdateMovement()
     {
         Vector2 move = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
+        Vector2 Facing = movementController.GetFacingDirection();
         bool walking = (move != Vector2.zero);
-            if (walking)
-            {
-            anim.SetFloat("move_x", move.x);
-            anim.SetFloat("move_y", move.y);
-            }
+
+       // if (movementController.isAttacking )
+        //{
+           // StopWalkingAnimation();
+          //  return;
+        //}
+                
+         //if( movementController.waitForKeypress)
+          //   StopWalkingAnimation();
+
+         if (walking)
+            SetMovement(move);
+
         movementController.SetMoveDirection(move);
         anim.SetBool("walking", walking);
     }
     
+    
     // Update is called once per frame
     void Update()
     {
+        if (!movementController.IsBusy())
+            UpdateMovement();
 
-
-        UpdateMovement();
-        if (!isAttacking)
+        else
         {
+            if (attackTimer < attackSpeed)
+                attackTimer += Time.deltaTime;
 
-
-            if(Input.GetKeyDown(KeyCode.Space))
+            else
             {
-                interactionController.DoInteraction();
-             //   movementController.DisableMovement();
+                movementController.isAttacking = false;
+                attackTimer = 0f;
+            }
+
+        }
+
+            if (Input.GetKeyDown(KeyCode.Space))
+            {
+           bool DidInteractionHappen = interactionController.DoInteraction();
+            if (DidInteractionHappen)
+            {
+
+                 if( movementController.waitForKeypress = !movementController.waitForKeypress)
+                     StopWalkingAnimation(movementController.GetFacingDirection());
+
+            }
+
             }
 
             if (Input.GetButtonDown("Fire1"))
             {
+          
                 anim.SetTrigger("attacking");
-                isAttacking = true;
+                movementController.isAttacking = true;
+                StopWalkingAnimation(movementController.GetFacingDirection());
+
             }
             if (Input.GetButtonDown("Fire2"))
             {
                 anim.SetTrigger("casting");
             }
 
-        }
-        else
-        {
-
-            if (attackTimer < attackSpeed)
-            {
-                attackTimer += Time.deltaTime;
-            }
-            else
-            {
-                isAttacking = false;
-                attackTimer = 0f;
-            }
-        }
+        
+       
 
 
     }  
