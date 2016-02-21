@@ -51,15 +51,6 @@ public class InputController : MonoBehaviour {
         Vector2 Facing = movementController.GetFacingDirection();
         bool walking = (move != Vector2.zero);
 
-       // if (movementController.isAttacking )
-        //{
-           // StopWalkingAnimation();
-          //  return;
-        //}
-                
-         //if( movementController.waitForKeypress)
-          //   StopWalkingAnimation();
-
          if (walking)
             SetMovement(move);
 
@@ -100,11 +91,12 @@ public class InputController : MonoBehaviour {
 
             }
 
-            if (Input.GetButtonDown("Fire1"))
+            if (Input.GetButtonDown("Fire1") && !movementController.isAttacking)
             {
           
                 anim.SetTrigger("attacking");
                 movementController.isAttacking = true;
+                movementController.beginAttack = true;
                 StopWalkingAnimation(movementController.GetFacingDirection());
 
             }

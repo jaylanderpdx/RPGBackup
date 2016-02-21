@@ -9,6 +9,7 @@ public enum ItemTypes
     Collectible,
     Powerup,
     Weapon,
+    Sword
 
 
 

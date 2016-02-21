@@ -8,6 +8,7 @@ public class MovementController : MonoBehaviour {
     public Vector3 facingDirection;
     public float moveSpeed;
     public bool isAttacking = false;
+    public bool beginAttack = false;
     public bool waitForKeypress;
     private Rigidbody2D characterBody;
     // Use this for initialization
@@ -34,7 +35,7 @@ public class MovementController : MonoBehaviour {
     }
     
     
-    public void SetMoveDirection(Vector2 NewDirection)
+    public void SetMoveDirection(Vector2 NewDirection) 
     {
 
         if (isAttacking)
