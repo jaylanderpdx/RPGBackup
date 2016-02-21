@@ -69,7 +69,7 @@ public class MovementController : MonoBehaviour {
 
         Rigidbody2D rbod = GetComponent<Rigidbody2D>();
 
-        if ( !IsBusy())//&& !isAttacking)
+        if (!IsBusy())
         {
 
             if (moveDirection != Vector3.zero)

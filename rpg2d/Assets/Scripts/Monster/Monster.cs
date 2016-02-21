@@ -1,86 +1,121 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.UI;
+namespace Monsters
+{
 
-public class Monster : MonoBehaviour {
-
-
-    PlayerTypes monsterType;
-    PlayerStats monsterStats;
-    public MovementController movementController;
-    public Collider2D attackRange;
-    public bool playerInAttackRange;
-    float viewRadius;
-    protected int updateAIEvery = 10; // c
-    protected int currentFrameRef = 0;
-
-    //PlayerDesc monsterLookup;
- 
-   
-        void Awake()
+    public class Monster : MonoBehaviour
     {
-        monsterStats = GetComponent<PlayerStats>();
-        
-    }
-        
+
+
+        PlayerTypes monsterType;
+        protected GameObject playerEnteredRange;
+        public GameObject combatText;
+        protected PlayerStats monsterStats;
+        protected MovementController movementController;
+        public Collider2D attackRange;
+        public bool playerInAttackRange;
+        protected int updateAIEvery = 10; // c
+        protected int currentFrameRef = 0;
+
+        //PlayerDesc monsterLookup;
+
+
+        void CreateCombatText(string s)
+        {
+
+            GameObject obj = Instantiate(combatText);
+            RectTransform rect = obj.GetComponent<RectTransform>();
+
+            GameObject monster = gameObject.transform.parent.FindChild("UI").gameObject;
+            GameObject canvas =  monster.GetComponent<Canvas>().gameObject;
+            rect.localPosition = combatText.transform.localPosition;
+            rect.localScale = combatText.transform.localScale;
+            rect.localRotation = combatText.transform.localRotation;
+            Text ct = obj.GetComponent<Text>();
+            
+            ct.text = s;
+            obj.transform.SetParent(canvas.transform);
+            Destroy(obj, 1f);
+
+            }
+
+    public void Awake()
+        {
+            monsterStats = GetComponentInParent<PlayerStats>();
+            movementController = GetComponentInParent<MovementController>();
+            
+        }
+
         // Use this for initialization
-    void Start ()
-    {
+        void Start()
+        {
 
-        monsterType = PlayerTypes.Monster;
-       
-
+            monsterType = PlayerTypes.Monster;
 
 
-	}
-
-      void OnTriggerEnter2D(Collider2D col)
-    {
-        if (col.tag == "Player")
-                 playerInAttackRange = true;
-       
-     }
 
 
-     void OnTriggerExit2D(Collider2D col)
-    {
-      if (col.tag == "Player")
-            playerInAttackRange = false;             
-     }
+        }
+
+        void OnTriggerEnter2D(Collider2D col)
+        {
+            if (col.tag == "Player")
+            {
+                playerInAttackRange = true;
+                playerEnteredRange = col.gameObject;
+            }
+        }
 
 
-    public virtual void OnHit(ItemTypes HitByWhat)
-    {
+        void OnTriggerExit2D(Collider2D col)
+        {
+            if (col.tag == "Player")
+                playerInAttackRange = false;
+        }
+
         
-        monsterStats.currentHealth--;
+        public virtual void OnHit(ItemTypes HitByWhat)
+        {
 
-        if (monsterStats.currentHealth <= 0)
-            DestroyObject(gameObject);
+            int dmg = 10;
+            monsterStats.currentHealth--;
+            
+            if (monsterStats.currentHealth <= 0)
+                DestroyObject(gameObject.transform.parent.gameObject);
+            CreateCombatText(dmg.ToString());
+        }
+
+        public void FindPathTo(Vector3 MoveHere)
+        {
+
+        }
+
+        public bool ObjectInFOV(GameObject ObjectToCheck)
+        {
+
+            return true;
+        }
+
+        public void FaceAnObject(GameObject ObjectToFace)
+        {
+
+            Vector2 ObjectLocation = ObjectToFace.transform.position;
+            Vector2 MonsterLocation = gameObject.transform.position;
+            Vector2 Difference = ObjectLocation - MonsterLocation;
+            movementController.SetMoveDirection(Difference);
+
+        }
+
+        virtual public void DoAi()
+        {
+
+
+        }
+        // Update is called once per frame
+        void Update()
+        {
+
+        }
     }
-
-    public void FindPathTo(Vector3 MoveHere)
-    {
-
-    }
-
-    public bool ObjectInFOV(GameObject ObjectToCheck)
-    {
-
-        return true;
-    }
-
-    public void FaceAnObject(GameObject ObjectToFace)
-    {
-
-
-    }
-
-    virtual public void DoAi()
-    {
-
-
-    }
-	// Update is called once per frame
-	void Update () {
-	
-	}
 }

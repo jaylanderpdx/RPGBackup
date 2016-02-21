@@ -1,16 +1,17 @@
 ﻿using UnityEngine;
 using System.Collections;
+using Monsters;
 
 public class AttackableMonster : Attackable {
 
 
-    Monster monsterReference;
+    public Monster monsterReference;
 
     
     // Use this for initialization
 	void Start () {
 
-        monsterReference = GetComponent<Monster>();
+        monsterReference = GetComponentInChildren<Monster>();
         	
 	}
 	

@@ -37,11 +37,11 @@ public class InputController : MonoBehaviour
         movementController.UpdateBusyStatus(combatController.isAttacking); //if the character attacks then the movement status becomes busy otherwise not busy
         Vector2 NewMovingDirection = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
         bool HasWalkingInput = (NewMovingDirection != Vector2.zero);
+        if (!movementController.IsBusy()) 
         animationController.DoWalkAnimation(NewMovingDirection, HasWalkingInput);
         movementController.SetMoveDirection(NewMovingDirection);
 
     }
-
 
     void UpdateInputAttack()
     {
