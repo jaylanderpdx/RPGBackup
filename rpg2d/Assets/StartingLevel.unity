@@ -1026,8 +1026,8 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 624946046}
-  - 68: {fileID: 624946047}
   - 114: {fileID: 624946048}
+  - 60: {fileID: 624946047}
   m_Layer: 0
   m_Name: Main-hand Weapon
   m_TagString: Untagged
@@ -1048,8 +1048,8 @@ Transform:
   - {fileID: 703754785}
   m_Father: {fileID: 963387283}
   m_RootOrder: 0
---- !u!68 &624946047
-EdgeCollider2D:
+--- !u!60 &624946047
+PolygonCollider2D:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
@@ -1061,8 +1061,12 @@ EdgeCollider2D:
   m_UsedByEffector: 0
   m_Offset: {x: 0, y: 0}
   m_Points:
-  - {x: -0.18522033, y: 0.08628136}
-  - {x: 0.115167074, y: -0.04957512}
+    m_Paths:
+    - - {x: -0.18602099, y: 0.088497676}
+      - {x: 0.22489277, y: 0.040084407}
+      - {x: 0.23434503, y: -0.10678825}
+      - {x: 0.10049139, y: -0.1765458}
+      - {x: -0.16046797, y: 0.08114144}
 --- !u!114 &624946048
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1074,7 +1078,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 82fd2b8ac61740442aa309859b5bffd3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  PlayerActionController: {fileID: 1197923803}
+  playerActionController: {fileID: 0}
+  combatController: {fileID: 1197923805}
   weaponType: 4
 --- !u!1001 &686719908
 Prefab:
@@ -1695,10 +1700,12 @@ GameObject:
   - 95: {fileID: 1197923798}
   - 114: {fileID: 1197923799}
   - 114: {fileID: 1197923801}
-  - 61: {fileID: 1197923800}
   - 50: {fileID: 1197923802}
+  - 61: {fileID: 1197923800}
   - 114: {fileID: 1197923803}
   - 114: {fileID: 1197923804}
+  - 114: {fileID: 1197923805}
+  - 114: {fileID: 1197923806}
   m_Layer: 0
   m_Name: MainCharacter
   m_TagString: Player
@@ -1837,8 +1844,8 @@ MonoBehaviour:
   moveDirection: {x: 0, y: 0, z: 0}
   facingDirection: {x: 0, y: 0, z: 0}
   moveSpeed: 2
-  isAttacking: 0
   waitForKeypress: 0
+  isBusy: 0
 --- !u!114 &1197923804
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1852,6 +1859,31 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   interactionRadius: 0.6
   interactionFOV: 40
+--- !u!114 &1197923805
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1197923795}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ab59e5f5aa7f39543950ea064d220231, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isAttacking: 0
+  attackSpeed: 0.5
+  attackTimer: 0
+--- !u!114 &1197923806
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1197923795}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0208ce4b1a4e41408528a4ef0f1dee2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1283652807
 GameObject:
   m_ObjectHideFlags: 0
@@ -2017,33 +2049,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 441682795}
   m_RootOrder: 0
---- !u!1 &1335845301
-GameObject:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  serializedVersion: 4
-  m_Component:
-  - 4: {fileID: 1335845302}
-  m_Layer: 0
-  m_Name: Wolf
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1335845302
-Transform:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1335845301}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 1566433427}
-  m_RootOrder: 1
 --- !u!1 &1343718789
 GameObject:
   m_ObjectHideFlags: 0
@@ -2396,7 +2401,6 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1860290371}
-  - {fileID: 1335845302}
   m_Father: {fileID: 373844226}
   m_RootOrder: 2
 --- !u!1 &1587690859
@@ -2900,6 +2904,19 @@ BoxCollider2D:
   m_Offset: {x: 0.018804755, y: 0.022565978}
   serializedVersion: 2
   m_Size: {x: 0.5411552, y: 0.503545}
+--- !u!114 &1860290374
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1860290366}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a1a298beaf10a9e42a3033a0ad8157f3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  currentHealth: 3
+  maxHealth: 2
 --- !u!1 &1884683356
 GameObject:
   m_ObjectHideFlags: 0

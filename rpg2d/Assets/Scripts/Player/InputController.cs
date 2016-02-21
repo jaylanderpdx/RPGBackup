@@ -3,111 +3,81 @@
 using System.Collections;
 using Interactions;
 
-public class InputController : MonoBehaviour {
+public class InputController : MonoBehaviour
+{
 
 
     MovementController movementController;
     InteractionController interactionController;
-    Animator anim;
+    CombatController combatController;
+    AnimationController animationController;
     public static InputController Instance;
-  
-  
-    float attackSpeed;
-    float attackTimer;
+
 
     void Awake()
     {
         movementController = GetComponent<MovementController>();
         interactionController = GetComponent<InteractionController>();
+        combatController = GetComponent<CombatController>();
+        animationController = GetComponent<AnimationController>();
     }
     // Use this for initialization
-    void Start() {
-        anim = GetComponent<Animator>();
+    void Start()
+    {
         Instance = this;
-        attackSpeed = .5f;
-        attackTimer = 0f;
     }
 
-    
-    void SetMovement(Vector2 mov)
+    void StopWalkingAnimation()
     {
-
-        anim.SetFloat("move_x", mov.x);
-        anim.SetFloat("move_y", mov.y);
-        
+        animationController.StopWalkAnimation(movementController.facingDirection);
     }
 
-
-    void StopWalkingAnimation( Vector2 Facing)
+    void UpdateInputMovement()
     {
-        SetMovement(Facing);
-        anim.SetBool("walking", false);
+        movementController.UpdateBusyStatus(combatController.isAttacking); //if the character attacks then the movement status becomes busy otherwise not busy
+        Vector2 NewMovingDirection = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
+        bool HasWalkingInput = (NewMovingDirection != Vector2.zero);
+        animationController.DoWalkAnimation(NewMovingDirection, HasWalkingInput);
+        movementController.SetMoveDirection(NewMovingDirection);
 
     }
 
-    void UpdateMovement()
+
+    void UpdateInputAttack()
     {
-        Vector2 move = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
-        Vector2 Facing = movementController.GetFacingDirection();
-        bool walking = (move != Vector2.zero);
-
-         if (walking)
-            SetMovement(move);
-
-        movementController.SetMoveDirection(move);
-        anim.SetBool("walking", walking);
-    }
-    
-    
-    // Update is called once per frame
-    void Update()
-    {
-        if (!movementController.IsBusy())
-            UpdateMovement();
-
-        else
+        combatController.UpdateAttack();
+        bool ReadyToAttack = (Input.GetButtonDown("Fire1") && !combatController.isAttacking && !movementController.IsBusy());
+        if (ReadyToAttack)
         {
-            if (attackTimer < attackSpeed)
-                attackTimer += Time.deltaTime;
+            combatController.BeginAttack();
+            animationController.DoAttackAnimation();
+            movementController.UpdateBusyStatus(true);
+            StopWalkingAnimation();
+        }
+    }
 
-            else
+    void UpdateInputInteration()
+    {
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            bool DidInteractionHappen = interactionController.DoInteraction();
+            if (DidInteractionHappen)
             {
-                movementController.isAttacking = false;
-                attackTimer = 0f;
+                if (movementController.waitForKeypress = !movementController.waitForKeypress)
+                    StopWalkingAnimation();
             }
 
         }
+    }
 
-            if (Input.GetKeyDown(KeyCode.Space))
-            {
-           bool DidInteractionHappen = interactionController.DoInteraction();
-            if (DidInteractionHappen)
-            {
+    // Update is called once per frame
+    void Update()
+    {
 
-                 if( movementController.waitForKeypress = !movementController.waitForKeypress)
-                     StopWalkingAnimation(movementController.GetFacingDirection());
-
-            }
-
-            }
-
-            if (Input.GetButtonDown("Fire1") && !movementController.isAttacking)
-            {
-          
-                anim.SetTrigger("attacking");
-                movementController.isAttacking = true;
-                movementController.beginAttack = true;
-                StopWalkingAnimation(movementController.GetFacingDirection());
-
-            }
-            if (Input.GetButtonDown("Fire2"))
-            {
-                anim.SetTrigger("casting");
-            }
-
-        
-       
+        UpdateInputMovement();
+        UpdateInputAttack();
+        UpdateInputInteration();
 
 
-    }  
+    }
 }

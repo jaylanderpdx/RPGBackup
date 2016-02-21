@@ -1,10 +1,12 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 public class HandleWeaponCollision : MonoBehaviour {
 
     Collider2D weaponCollider;
-    public MovementController PlayerActionController;
+    public MovementController playerActionController;
+    public CombatController combatController;
     public ItemTypes weaponType;
 
 
@@ -22,13 +24,19 @@ public class HandleWeaponCollision : MonoBehaviour {
 
 
         Attackable CanAttackCollidedObject = CollidedWith.GetComponent<Attackable>();
-
-        if(CanAttackCollidedObject && PlayerActionController.isAttacking)
+       
+        if(CanAttackCollidedObject && combatController.isAttacking)
         {
-            if (PlayerActionController.beginAttack)
+            GameObject obj = CollidedWith.gameObject;
+            bool IsDuplicateAttack = combatController.DuplicateHit(obj);
+
+
+            if (!IsDuplicateAttack)
             {
+                Debug.Log(obj);
+                combatController.LogAttackEntry(obj);
                 CanAttackCollidedObject.OnAttack(weaponType);
-                PlayerActionController.beginAttack = false;
+               
             }
 
         }

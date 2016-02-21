@@ -7,9 +7,8 @@ public class MovementController : MonoBehaviour {
     public Vector3 moveDirection;
     public Vector3 facingDirection;
     public float moveSpeed;
-    public bool isAttacking = false;
-    public bool beginAttack = false;
     public bool waitForKeypress;
+    public bool isBusy;
     private Rigidbody2D characterBody;
     // Use this for initialization
 
@@ -26,7 +25,7 @@ public class MovementController : MonoBehaviour {
 
     public bool IsBusy()
     {
-        return isAttacking || waitForKeypress;
+        return waitForKeypress || isBusy;
     }
 
 	void FixedUpdate()
@@ -35,10 +34,16 @@ public class MovementController : MonoBehaviour {
     }
     
     
+    public void UpdateBusyStatus(bool busy)
+    {
+        isBusy = busy;
+
+    }
+
     public void SetMoveDirection(Vector2 NewDirection) 
     {
 
-        if (isAttacking)
+        if (isBusy)
             return;
 
         moveDirection = new Vector3(NewDirection.x, NewDirection.y);
@@ -64,7 +69,7 @@ public class MovementController : MonoBehaviour {
 
         Rigidbody2D rbod = GetComponent<Rigidbody2D>();
 
-        if ( !waitForKeypress && !isAttacking)
+        if ( !IsBusy())//&& !isAttacking)
         {
 
             if (moveDirection != Vector3.zero)
