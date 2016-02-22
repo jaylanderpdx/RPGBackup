@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using Monsters;
+using Design;
 
 public class AttackableMonster : Attackable {
 
@@ -11,8 +12,7 @@ public class AttackableMonster : Attackable {
     // Use this for initialization
 	void Start () {
 
-        monsterReference = GetComponentInChildren<Monster>();
-        	
+        monsterReference = CharacterDesign.MonsterModule(gameObject); 	
 	}
 	
 

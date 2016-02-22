@@ -11,53 +11,76 @@ namespace Monsters
         public ParticleSystem slashParticle;
         public GameObject floatingCombatTxt;
 
+      
 
-       
-
-        public override void DoAi()
+        void CheckAttackRange()
         {
-            base.DoAi();
-           
-            if (playerInAttackRange)
-            {
-                FaceAnObject(playerEnteredRange);
 
+            if (playerInView && playerEnteredRange)
+            {
+
+              Vector2 v1 = gameObject.transform.position;
+              Vector2 v2 = playerEnteredRange.transform.position;
+
+               
+                float distance = Vector2.Distance(v1, v2);
+                if (distance <= attackRadius)
+                {
+       
+                    playerInAttackRange = true;
+                }
+                else
+                    playerInAttackRange = false;
             }
-            else
-                movementController.SetMoveDirection(Vector2.zero);
         }
+
+
+            public override void DoAi()
+            {
+
+            if (!combatController.isAttacking)
+            {
+                if (playerInView)
+                {
+                  FaceAnObject(playerEnteredRange);
+                    if (playerInAttackRange)
+                    {
+                        bool AlreadyAttackedPlayer = combatController.DuplicateHit(playerEnteredRange);
+                        if (!AlreadyAttackedPlayer)
+                        {
+                            combatController.LogAttackEntry(playerEnteredRange);
+                            combatController.BeginAttack();
+                        }
+                    }
+                }
+                else {
+                    // 
+                    combatController.EndAttack();
+                }
+            }
+            else {
+                combatController.UpdateAttack();
+                movementController.SetMoveDirection(Vector2.zero);
+            }                              
+
+               
+           }
 
         public override void OnHit(ItemTypes item)
         {
-
-            //  Destroy(slashParticle, slashParticle.duration);
-
-
-           GameObject obj =  GameObject.Instantiate(slashParticle, transform.position, Quaternion.identity) as GameObject;
-
+            GameObject obj = GameObject.Instantiate(slashParticle, transform.position, Quaternion.identity) as GameObject;
             Destroy(obj, 1f);
-            
-            //WorldUI.instance.DamageNormalAt (transform.position, 1);
             base.OnHit(item);
         }
 
-        void Start()
-        {
-
-            drops.AddDrop(0, new DropListEntry(0, 1f));
-
-        }
-
-        // Update is called once per frame
+    
         void Update()
         {
-            currentFrameRef++;
+         
 
-            if (currentFrameRef > updateAIEvery)
-            {
-                currentFrameRef = 0;
-                DoAi();
-            }
+            CheckAttackRange();
+            DoAi();
+            //}
         }
     }
 

@@ -1,7 +1,5 @@
 C:\Users\Jordan\UnityBackup\2DRPG\rpg2d\Temp\UnityVS_bin\Debug\Assembly-CSharp.dll
 C:\Users\Jordan\UnityBackup\2DRPG\rpg2d\Temp\UnityVS_bin\Debug\Assembly-CSharp.pdb
-C:\Users\Jordan\UnityBackup\2DRPG\rpg2d\Temp\UnityVS_bin\Debug\Assembly-CSharp.dll.CodeAnalysisLog.xml
-C:\Users\Jordan\UnityBackup\2DRPG\rpg2d\Temp\UnityVS_bin\Debug\Assembly-CSharp.dll.lastcodeanalysissucceeded
 C:\Users\Jordan\UnityBackup\2DRPG\rpg2d\Temp\UnityVS_bin\Debug\UnityEditor.dll
 C:\Users\Jordan\UnityBackup\2DRPG\rpg2d\Temp\UnityVS_bin\Debug\UnityEditor.iOS.Extensions.Common.dll
 C:\Users\Jordan\UnityBackup\2DRPG\rpg2d\Temp\UnityVS_bin\Debug\UnityEditor.iOS.Extensions.Xcode.dll

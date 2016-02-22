@@ -1,7 +1,8 @@
 ﻿using UnityEngine;
 using System.Collections;
 using UnityEngine.UI;
-
+using Monsters;
+using Design;
 public class HealthbarController : MonoBehaviour {
 
 
@@ -12,14 +13,16 @@ public class HealthbarController : MonoBehaviour {
 
     void Awake()
     {
-      healthStats = GetComponent<PlayerStats>();
-
-       // if(!healthText)
-      //  healthText = GetComponent<Text>();
+      
+      
     }
     void Start () {
-	
-	}
+
+       PlayerStats lookup = CharacterDesign.StatsModule(gameObject);
+
+        if (lookup)
+            healthStats = lookup;
+    }
 
     // Update is called once per frame
     void Update()

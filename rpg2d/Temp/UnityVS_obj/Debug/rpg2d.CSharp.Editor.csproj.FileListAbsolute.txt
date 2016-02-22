@@ -1,7 +1,5 @@
 C:\Users\Jordan\UnityBackup\2DRPG\rpg2d\Temp\UnityVS_bin\Debug\Assembly-CSharp-Editor.dll
 C:\Users\Jordan\UnityBackup\2DRPG\rpg2d\Temp\UnityVS_bin\Debug\Assembly-CSharp-Editor.pdb
-C:\Users\Jordan\UnityBackup\2DRPG\rpg2d\Temp\UnityVS_bin\Debug\Assembly-CSharp-Editor.dll.CodeAnalysisLog.xml
-C:\Users\Jordan\UnityBackup\2DRPG\rpg2d\Temp\UnityVS_bin\Debug\Assembly-CSharp-Editor.dll.lastcodeanalysissucceeded
 C:\Users\Jordan\UnityBackup\2DRPG\rpg2d\Temp\UnityVS_bin\Debug\nunit.framework.dll
 C:\Users\Jordan\UnityBackup\2DRPG\rpg2d\Temp\UnityVS_bin\Debug\SyntaxTree.VisualStudio.Unity.Bridge.dll
 C:\Users\Jordan\UnityBackup\2DRPG\rpg2d\Temp\UnityVS_bin\Debug\UnityEditor.Advertisements.dll

@@ -17,27 +17,27 @@ AnimationClip:
       serializedVersion: 2
       m_Curve:
       - time: 0
-        value: {x: 0, y: 0, z: 42.4269}
+        value: {x: 0, y: 0, z: 396.37778}
         inSlope: {x: 0, y: 0, z: 0}
         outSlope: {x: 0, y: 0, z: 0}
         tangentMode: 0
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: Equipped Gear/Main-hand Weapon
+    path: Main-hand Weapon
   m_PositionCurves:
   - curve:
       serializedVersion: 2
       m_Curve:
       - time: 0
-        value: {x: -0.075, y: -0.315, z: 0}
+        value: {x: -0.256, y: -0.26, z: 1}
         inSlope: {x: 0, y: 0, z: 0}
         outSlope: {x: 0, y: 0, z: 0}
         tangentMode: 0
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: Equipped Gear/Main-hand Weapon
+    path: Main-hand Weapon
   m_ScaleCurves: []
   m_FloatCurves: []
   m_PPtrCurves:
@@ -61,13 +61,13 @@ AnimationClip:
       classID: 212
       customType: 23
       isPPtrCurve: 1
-    - path: 3788895507
+    - path: 1687735239
       attribute: 1
       script: {fileID: 0}
       classID: 4
       customType: 0
       isPPtrCurve: 0
-    - path: 3788895507
+    - path: 1687735239
       attribute: 4
       script: {fileID: 0}
       classID: 4
@@ -100,7 +100,7 @@ AnimationClip:
       serializedVersion: 2
       m_Curve:
       - time: 0
-        value: -0.075
+        value: -0.256
         inSlope: 0
         outSlope: 0
         tangentMode: 10
@@ -108,14 +108,14 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalPosition.x
-    path: Equipped Gear/Main-hand Weapon
+    path: Main-hand Weapon
     classID: 4
     script: {fileID: 0}
   - curve:
       serializedVersion: 2
       m_Curve:
       - time: 0
-        value: -0.315
+        value: -0.26
         inSlope: 0
         outSlope: 0
         tangentMode: 10
@@ -123,14 +123,14 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalPosition.y
-    path: Equipped Gear/Main-hand Weapon
+    path: Main-hand Weapon
     classID: 4
     script: {fileID: 0}
   - curve:
       serializedVersion: 2
       m_Curve:
       - time: 0
-        value: 0
+        value: 1
         inSlope: 0
         outSlope: 0
         tangentMode: 10
@@ -138,7 +138,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalPosition.z
-    path: Equipped Gear/Main-hand Weapon
+    path: Main-hand Weapon
     classID: 4
     script: {fileID: 0}
   - curve:
@@ -153,7 +153,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: localEulerAnglesRaw.x
-    path: Equipped Gear/Main-hand Weapon
+    path: Main-hand Weapon
     classID: 4
     script: {fileID: 0}
   - curve:
@@ -168,14 +168,14 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: localEulerAnglesRaw.y
-    path: Equipped Gear/Main-hand Weapon
+    path: Main-hand Weapon
     classID: 4
     script: {fileID: 0}
   - curve:
       serializedVersion: 2
       m_Curve:
       - time: 0
-        value: 42.4269
+        value: 396.37778
         inSlope: 0
         outSlope: 0
         tangentMode: 10
@@ -183,7 +183,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: localEulerAnglesRaw.z
-    path: Equipped Gear/Main-hand Weapon
+    path: Main-hand Weapon
     classID: 4
     script: {fileID: 0}
   m_EulerEditorCurves:
@@ -193,8 +193,8 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    attribute: m_LocalEulerAngles.x
-    path: Equipped Gear/Main-hand Weapon
+    attribute: m_LocalEulerAngles.z
+    path: Main-hand Weapon
     classID: 4
     script: {fileID: 0}
   - curve:
@@ -204,7 +204,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalEulerAngles.y
-    path: Equipped Gear/Main-hand Weapon
+    path: Main-hand Weapon
     classID: 4
     script: {fileID: 0}
   - curve:
@@ -213,8 +213,8 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    attribute: m_LocalEulerAngles.z
-    path: Equipped Gear/Main-hand Weapon
+    attribute: m_LocalEulerAngles.x
+    path: Main-hand Weapon
     classID: 4
     script: {fileID: 0}
   m_HasGenericRootTransform: 0

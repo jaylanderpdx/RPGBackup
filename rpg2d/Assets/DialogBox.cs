@@ -3,15 +3,15 @@ using System.Collections;
 using UnityEngine.UI;
 public class DialogBox : MonoBehaviour {
 
-    private Text dialogText;
-    private Image dialogImage;
+    public Text dialogText;
+    public Image dialogImage;
     private static DialogBox instance;
 
     void Awake()
     {
         instance = this;   
-        dialogText = GetComponentInChildren<Text>();
-        dialogImage = GetComponentInChildren<Image>();
+       // dialogText = GetComponentInChildren<Text>();
+        //dialogImage = GetComponentInChildren<Image>();
         SetState(false);
     }
 

@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using UnityEngine.UI;
+using Design;
 namespace Monsters
 {
 
@@ -12,14 +13,16 @@ namespace Monsters
         protected GameObject playerEnteredRange;
         public GameObject combatText;
         protected PlayerStats monsterStats;
+        protected CombatController combatController;
         protected MovementController movementController;
         public Collider2D attackRange;
         public bool playerInAttackRange;
+        public bool playerInView;
+        public float attackRadius;
         protected int updateAIEvery = 10; // c
         protected int currentFrameRef = 0;
 
-        //PlayerDesc monsterLookup;
-
+     
 
         void CreateCombatText(string s)
         {
@@ -42,28 +45,30 @@ namespace Monsters
 
     public void Awake()
         {
-            monsterStats = GetComponentInParent<PlayerStats>();
-            movementController = GetComponentInParent<MovementController>();
+            
+            monsterStats = CharacterDesign.StatsModule(gameObject);//GetComponentInParent<PlayerStats>();
+            movementController = CharacterDesign.MovementModule(gameObject);
+            combatController = CharacterDesign.CombatModule(gameObject);
+            monsterStats = CharacterDesign.StatsModule(gameObject);
             
         }
 
         // Use this for initialization
         void Start()
         {
-
+           CircleCollider2D  col = combatController.GetComponent<CircleCollider2D>() ;
+            attackRadius = col.radius;
+            Debug.Log(attackRadius);
             monsterType = PlayerTypes.Monster;
-
-
-
-
         }
 
         void OnTriggerEnter2D(Collider2D col)
         {
             if (col.tag == "Player")
             {
-                playerInAttackRange = true;
+                playerInView = true;
                 playerEnteredRange = col.gameObject;
+                
             }
         }
 
@@ -71,7 +76,8 @@ namespace Monsters
         void OnTriggerExit2D(Collider2D col)
         {
             if (col.tag == "Player")
-                playerInAttackRange = false;
+                playerInView = false;
+                 
         }
 
         
@@ -113,9 +119,6 @@ namespace Monsters
 
         }
         // Update is called once per frame
-        void Update()
-        {
-
-        }
+      
     }
 }

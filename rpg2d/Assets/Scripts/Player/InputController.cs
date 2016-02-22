@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
-
+using Monsters;
+using Design;
 using System.Collections;
 using Interactions;
 
@@ -16,10 +17,10 @@ public class InputController : MonoBehaviour
 
     void Awake()
     {
-        movementController = GetComponent<MovementController>();
-        interactionController = GetComponent<InteractionController>();
-        combatController = GetComponent<CombatController>();
-        animationController = GetComponent<AnimationController>();
+        movementController = CharacterDesign.MovementModule(gameObject);//GetComponent<MovementController>();
+        interactionController = CharacterDesign.InteractionModule(gameObject);
+        combatController = CharacterDesign.CombatModule(gameObject);
+        animationController = CharacterDesign.AnimationModule(gameObject); //GetComponent<AnimationController>();
     }
     // Use this for initialization
     void Start()
@@ -34,7 +35,7 @@ public class InputController : MonoBehaviour
 
     void UpdateInputMovement()
     {
-        movementController.UpdateBusyStatus(combatController.isAttacking); //if the character attacks then the movement status becomes busy otherwise not busy
+        movementController.UpdateBusyStatus(combatController.isAttacking || movementController.waitForKeypress); //if the character attacks then the movement status becomes busy otherwise not busy
         Vector2 NewMovingDirection = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
         bool HasWalkingInput = (NewMovingDirection != Vector2.zero);
         if (!movementController.IsBusy()) 

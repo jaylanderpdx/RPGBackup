@@ -1,11 +1,14 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using Design;
 
 public class CombatController : MonoBehaviour {
 
+    public PlayerStats statsReference;
 
     List<GameObject> ObjectsHitThisAttack = new List<GameObject>();
+
     public bool isAttacking = false;
     public float attackSpeed = .5f;
     public float attackTimer = 0f;
@@ -31,6 +34,16 @@ public class CombatController : MonoBehaviour {
         attackTimer = 0f;
         isAttacking = true;
     }
+
+
+    public void Attack(GameObject ToAttack)
+    {
+
+        CombatController othercombat = CharacterDesign.CombatModule(ToAttack);
+
+
+    }
+
     public void LogAttackEntry(GameObject ObjectToLog)
     {
 
@@ -50,8 +63,8 @@ public class CombatController : MonoBehaviour {
     
     // Use this for initialization
 	void Start () {
-	
 
+        statsReference = CharacterDesign.StatsModule(gameObject);
 	}
 	
 	// Update is called once per frame
