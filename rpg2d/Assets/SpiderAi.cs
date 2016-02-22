@@ -42,7 +42,8 @@ namespace Monsters
             {
                 if (playerInView)
                 {
-                  FaceAnObject(playerEnteredRange);
+                  movementController.Face(playerEnteredRange);
+
                     if (playerInAttackRange)
                     {
                         bool AlreadyAttackedPlayer = combatController.DuplicateHit(playerEnteredRange);
@@ -60,7 +61,7 @@ namespace Monsters
             }
             else {
                 combatController.UpdateAttack();
-                movementController.SetMoveDirection(Vector2.zero);
+                movementController.StopMovement();
             }                              
 
                

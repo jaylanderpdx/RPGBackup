@@ -41,13 +41,12 @@ public class HandleWeaponCollision : MonoBehaviour {
 
             Vector2 FacingDirection = moveRef.facingDirection;
             Vector2 TargetEnemyLocation = CollidedWith.transform.position - gameObject.transform.position;
-           // if(TargetEnemyLocation != Vector2.zero)
-           // TargetEnemyLocation.Normalize();
+          
 
            float direction = Vector2.Dot(FacingDirection, TargetEnemyLocation);
-            float angle = Vector2.Angle(FacingDirection, TargetEnemyLocation);
-          //  Debug.Log(angle);
-            if (!IsDuplicateAttack && angle < 47f)//direction >= 0f)
+           float angle = Vector2.Angle(FacingDirection, TargetEnemyLocation);
+        
+            if (!IsDuplicateAttack && angle < 60f)
             {
                 combatController.LogAttackEntry(obj);
                 CanAttackCollidedObject.OnAttack(weaponType);

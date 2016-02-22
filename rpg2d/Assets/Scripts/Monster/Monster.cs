@@ -76,8 +76,10 @@ namespace Monsters
         void OnTriggerExit2D(Collider2D col)
         {
             if (col.tag == "Player")
+            {
                 playerInView = false;
-                 
+                playerEnteredRange = null;
+            }   
         }
 
         
@@ -102,7 +104,7 @@ namespace Monsters
 
             return true;
         }
-
+/*
         public void FaceAnObject(GameObject ObjectToFace)
         {
 
@@ -112,7 +114,7 @@ namespace Monsters
             movementController.SetMoveDirection(Difference);
 
         }
-
+        */
         virtual public void DoAi()
         {
 

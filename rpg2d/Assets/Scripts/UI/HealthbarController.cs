@@ -41,7 +41,7 @@ public class HealthbarController : MonoBehaviour {
         {
             float fraction = (ratio * 100.00f);
             int percent = (int)fraction;
-            healthText.text = fraction.ToString() + "%";
+            healthText.text = percent.ToString() + "%";
 
         }
     }

@@ -107,10 +107,12 @@ Assets/Scripts/UI/HealthbarController.cs
 Assets/Scripts/UI/WorldUI.cs
 Assets/SetGems.cs
 Assets/SpiderAi.cs
+Assets/SpriteEffect.cs
 Assets/Tiled2Unity/Scripts/Runtime/ImportBehaviour.cs
 Assets/Tiled2Unity/Scripts/Runtime/SortingLayerExposed.cs
 Assets/Tiled2Unity/Scripts/Runtime/TileAnimator.cs
 Assets/Tiled2Unity/Scripts/Runtime/TiledInitialShaderProperties.cs
 Assets/Tiled2Unity/Scripts/Runtime/TiledMap.cs
+Assets/UIMessage.cs
 -r:"C:\Program Files\Unity\Editor\Data\Mono\lib\mono\unity\System.Runtime.Serialization.dll"
 -r:"C:\Program Files\Unity\Editor\Data\Mono\lib\mono\unity\System.Xml.Linq.dll"

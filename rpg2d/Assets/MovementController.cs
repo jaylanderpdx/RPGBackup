@@ -23,6 +23,19 @@ public class MovementController : MonoBehaviour {
         facingDirection.Set(0f, -1f, 0f);
 	}
 
+
+
+    public void Face( GameObject TargetToFace)
+    {
+
+       Vector2 TargetLocation = TargetToFace.transform.position;
+       Vector2 ThisLocation = gameObject.transform.position;
+       Vector2 Difference = TargetLocation - ThisLocation;
+       SetMoveDirection(Difference);
+
+    
+}
+
     public bool IsBusy()
     {
         return waitForKeypress || isBusy;
