@@ -1,17 +1,25 @@
 ﻿using UnityEngine;
 using System.Collections;
+using CharacterControl;
+
 namespace Monsters
 {
     public class SpiderAi : Monster
     {
 
-
+        public float hitStrength = .001f;
+        public float hitTime = .002f;
         Drops drops = new Drops(2);
 
         public ParticleSystem slashParticle;
         public GameObject floatingCombatTxt;
 
-      
+
+
+        public override void Pause()
+        {
+            base.Pause();
+        }
 
         void CheckAttackRange()
         {
@@ -38,25 +46,33 @@ namespace Monsters
             public override void DoAi()
             {
 
+
+            if(CheckControlState(CharacterControl.ControlFlags.Dying))
+            {
+               
+                return;
+            }
+
             if (!combatController.isAttacking)
             {
                 if (playerInView)
                 {
-                  movementController.Face(playerEnteredRange);
+                    animationController.DoWalkAnimation(movementController.moveDirection, true);
+                    movementController.Face(playerEnteredRange);
+
 
                     if (playerInAttackRange)
                     {
-                        bool AlreadyAttackedPlayer = combatController.DuplicateHit(playerEnteredRange);
-                        if (!AlreadyAttackedPlayer)
-                        {
-                            combatController.LogAttackEntry(playerEnteredRange);
-                            combatController.BeginAttack();
-                        }
+
+                        combatController.BeginAttack();
+                        animationController.DoAttackAnimation();
                     }
                 }
                 else {
-                    // 
+                    
                     combatController.EndAttack();
+                    animationController.StopWalkAnimation(movementController.facingDirection);
+                    movementController.StopMovement();
                 }
             }
             else {
@@ -67,11 +83,17 @@ namespace Monsters
                
            }
 
-        public override void OnHit(ItemTypes item)
+        void CreateBloodEffect()
         {
             GameObject obj = GameObject.Instantiate(slashParticle, transform.position, Quaternion.identity) as GameObject;
             Destroy(obj, 1f);
-            base.OnHit(item);
+        }
+
+        public override void OnHit(BaseCharacterController Attacker)
+        {
+
+            CreateBloodEffect();
+            base.OnHit(Attacker);
         }
 
     

@@ -2,7 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 
-
+/*
 public enum ItemTypes
 {
     None,
@@ -14,7 +14,7 @@ public enum ItemTypes
 
 
 };
-
+*/
 namespace Inventory
 {
 

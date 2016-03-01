@@ -1,31 +1,49 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 using Monsters;
 using Design;
 using System.Collections;
 using Interactions;
+using CharacterControl;
 
-public class InputController : MonoBehaviour
+public class InputController : BaseCharacterController
 {
 
 
-    MovementController movementController;
-    InteractionController interactionController;
-    CombatController combatController;
-    AnimationController animationController;
-    public static InputController Instance;
 
+   public GameObject combatTextPrefab;
+   
+    private float threshhold = .5f;
+    private Vector2 currentSpeed;
+
+
+    public override void Pause()
+    {
+        base.Pause();
+    }
+
+   public void EnterCombatText(string s)
+    {
+        GameObject obj = Instantiate(combatTextPrefab, transform.position, Quaternion.identity) as GameObject;
+        RectTransform rect = obj.GetComponent<RectTransform>();
+        GameObject player = gameObject.transform.parent.FindChild("UI").gameObject;
+        GameObject canvas = player.GetComponent<Canvas>().gameObject;
+        Text ct = obj.GetComponent<Text>();
+
+        ct.text = s;
+        obj.transform.SetParent(canvas.transform);
+      
+
+    }
 
     void Awake()
     {
-        movementController = CharacterDesign.MovementModule(gameObject);//GetComponent<MovementController>();
-        interactionController = CharacterDesign.InteractionModule(gameObject);
-        combatController = CharacterDesign.CombatModule(gameObject);
-        animationController = CharacterDesign.AnimationModule(gameObject); //GetComponent<AnimationController>();
+        Setup();
     }
     // Use this for initialization
     void Start()
     {
-        Instance = this;
+  //      Instance = this;
     }
 
     void StopWalkingAnimation()
@@ -37,17 +55,25 @@ public class InputController : MonoBehaviour
     {
         movementController.UpdateBusyStatus(combatController.isAttacking || movementController.waitForKeypress); //if the character attacks then the movement status becomes busy otherwise not busy
         Vector2 NewMovingDirection = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
+        
         bool HasWalkingInput = (NewMovingDirection != Vector2.zero);
-        if (!movementController.IsBusy()) 
-        animationController.DoWalkAnimation(NewMovingDirection, HasWalkingInput);
-        movementController.SetMoveDirection(NewMovingDirection);
+        bool HasDiagonalInput = (Mathf.Abs(NewMovingDirection.x) >= threshhold) && (Mathf.Abs(NewMovingDirection.y) >= threshhold);
 
+            if (HasDiagonalInput)
+                currentSpeed = NewMovingDirection * .75f;
+            else
+                currentSpeed = NewMovingDirection;
+
+            if (!movementController.IsBusy())
+                animationController.DoWalkAnimation(NewMovingDirection, HasWalkingInput);
+
+        movementController.SetMoveDirection(currentSpeed);
     }
 
     void UpdateInputAttack()
     {
         combatController.UpdateAttack();
-        bool ReadyToAttack = (Input.GetButtonDown("Fire1") && !combatController.isAttacking && !movementController.IsBusy());
+        bool ReadyToAttack = (Input.GetButtonDown("Fire1") && !combatController.isAttacking && !movementController.IsBusy() && !movementController.isBeingPushed);
         if (ReadyToAttack)
         {
             combatController.BeginAttack();

@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using Inventory;
-
+using CharacterControl;
 public class Attackable : MonoBehaviour {
 
 	// Use this for initialization
@@ -9,7 +9,7 @@ public class Attackable : MonoBehaviour {
 	
 	}
 	
-	public virtual void OnAttack(ItemTypes item)
+	public virtual void OnAttack(BaseCharacterController Attacker)
     {
 
     }

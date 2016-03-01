@@ -2,6 +2,7 @@
 using System.Collections;
 using Monsters;
 using Design;
+using CharacterControl;
 
 public class AttackableMonster : Attackable {
 
@@ -12,14 +13,14 @@ public class AttackableMonster : Attackable {
     // Use this for initialization
 	void Start () {
 
-        monsterReference = CharacterDesign.MonsterModule(gameObject); 	
+        monsterReference = CharacterDesign.CharacterModule(gameObject) as Monster; 	
 	}
-	
 
-    public override void OnAttack(ItemTypes item)
+
+    public override void OnAttack(BaseCharacterController Attacker)
     {
 
-        monsterReference.OnHit(item);
+        monsterReference.OnHit(Attacker);
     }
 
 	// Update is called once per frame

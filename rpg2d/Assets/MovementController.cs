@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using CharacterControl;
 
 public class MovementController : MonoBehaviour {
 
@@ -10,7 +11,14 @@ public class MovementController : MonoBehaviour {
     public bool waitForKeypress;
     public bool isBusy;
     private Rigidbody2D characterBody;
-    // Use this for initialization
+  
+    private Vector2 hitDirection;
+    private float hitTime;
+    public bool isBeingPushed;
+
+    public float DRTimer = 0f;
+    public float DRReset = 6.0f;
+    private float currentDR;
 
 
     void Awake()
@@ -24,6 +32,59 @@ public class MovementController : MonoBehaviour {
 	}
 
 
+    public void GetPushedFrom(MovementController PushedFrom, float strength, float time)
+    {
+        Vector2 diff = transform.position - PushedFrom.transform.position;
+
+        if (diff != Vector2.zero)
+            diff.Normalize();
+        Knockback(diff * strength, time);
+    }
+
+
+    public void Knockback(Vector2 Directon, float OverTime)
+    {
+
+        if (DRTimer != 0f)
+        {
+            currentDR *= .75f;
+             if(currentDR > .25f)
+             {
+               // DRTimer = DRReset;
+                hitTime = OverTime * currentDR;
+                hitDirection = Directon;
+                //hitDirection.Normalize();
+             } 
+             else
+            {
+               
+                if(DRTimer == 0f)
+                {
+                    currentDR = 1f;
+                   
+                }
+            }
+        }
+        else
+        {
+            DRTimer = DRReset;
+            currentDR = 1f;
+            hitTime = OverTime;
+            hitDirection = Directon;
+        }
+    }
+
+
+    public bool IsFacing( BaseCharacterController TargetToFace)
+    {
+        return (facingDirection == TargetToFace.movementController.facingDirection);
+    }
+
+    public void TurnToward ( BaseCharacterController TargetToFace)
+    {
+
+        facingDirection = TargetToFace.movementController.facingDirection;
+    }
 
     public void Face( GameObject TargetToFace)
     {
@@ -53,10 +114,11 @@ public class MovementController : MonoBehaviour {
 
     }
 
+   
     public void SetMoveDirection(Vector2 NewDirection) 
     {
 
-        if (isBusy)
+        if (isBusy && hitTime <= 0f)
             return;
 
         moveDirection = new Vector3(NewDirection.x, NewDirection.y);
@@ -70,8 +132,21 @@ public class MovementController : MonoBehaviour {
     {
         moveDirection.x = 0f;
         moveDirection.y = 0f;
+        this.isBeingPushed = false;
+        this.hitTime = 0f;
+        this.hitDirection = Vector2.zero;
+        Rigidbody2D rbod = GetComponent<Rigidbody2D>();
+        rbod.velocity = Vector2.zero;
     }
 
+    public void Pause()
+    {
+        StopMovement();
+        Rigidbody2D rbod = GetComponent<Rigidbody2D>();
+        rbod.velocity = Vector2.zero;
+        enabled = false;
+
+    }
     public Vector3 GetFacingDirection()
     {
         return facingDirection;
@@ -82,17 +157,41 @@ public class MovementController : MonoBehaviour {
 
         Rigidbody2D rbod = GetComponent<Rigidbody2D>();
 
-        if (!IsBusy())
+
+
+        if (!waitForKeypress)
         {
 
-            if (moveDirection != Vector3.zero)
-                Vector3.Normalize(moveDirection);
+            
+                    if (moveDirection != Vector3.zero)
+                        Vector3.Normalize(moveDirection);
 
-            rbod.velocity = moveDirection * moveSpeed;
+
+            if (hitTime > 0f)
+            {
+                isBeingPushed = true;
+                rbod.velocity = hitDirection;
+            }
+            else
+            {
+                isBeingPushed = false;
+                if (!isBusy)
+                    rbod.velocity = moveDirection * moveSpeed;
+                else
+                    rbod.velocity = Vector2.zero;
+            }
+
         }
         else
             rbod.velocity = Vector2.zero;
-       }
-     
+
+    }
+    
+    void Update()
+    {
+
+            hitTime = Mathf.MoveTowards(hitTime, 0f, Time.deltaTime);
+        DRTimer = Mathf.MoveTowards(DRTimer, 0f, Time.deltaTime);
+    } 
     
 }

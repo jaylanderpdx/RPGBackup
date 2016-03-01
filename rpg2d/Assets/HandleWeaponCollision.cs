@@ -25,11 +25,11 @@ public class HandleWeaponCollision : MonoBehaviour {
         combatController = CharacterDesign.CombatModule(gameObject);
          
     }
-	
-	void OnTriggerStay2D(Collider2D CollidedWith)
+
+    void OnTriggerStay2D(Collider2D CollidedWith)
     {
 
-        
+        /*
         Attackable CanAttackCollidedObject = CollidedWith.GetComponent<Attackable>();
 
 
@@ -56,8 +56,9 @@ public class HandleWeaponCollision : MonoBehaviour {
         }
 
     }
-    
-    // Update is called once per frame
+    */
+        // Update is called once per frame
+    }
 	void Update ()
     {
 	

@@ -17,73 +17,100 @@ AnimationClip:
       serializedVersion: 2
       m_Curve:
       - time: 0
-        value: {x: 0, y: 0, z: 245.3987}
+        value: {x: 0, y: 0, z: 665.7137}
+        inSlope: {x: Infinity, y: Infinity, z: Infinity}
+        outSlope: {x: Infinity, y: Infinity, z: Infinity}
+        tangentMode: 0
+      - time: 0.083333336
+        value: {x: 0, y: 0, z: 568.3509}
         inSlope: {x: Infinity, y: Infinity, z: Infinity}
         outSlope: {x: Infinity, y: Infinity, z: Infinity}
         tangentMode: 0
       - time: 0.16666667
-        value: {x: 0, y: 0, z: -235.87369}
+        value: {x: 0, y: -1, z: 520.1227}
         inSlope: {x: Infinity, y: Infinity, z: Infinity}
         outSlope: {x: Infinity, y: Infinity, z: Infinity}
         tangentMode: 0
       - time: 0.25
-        value: {x: 0, y: 0, z: 209.7537}
+        value: {x: 0, y: 0, z: 552.4458}
         inSlope: {x: Infinity, y: Infinity, z: Infinity}
         outSlope: {x: Infinity, y: Infinity, z: Infinity}
         tangentMode: 0
       - time: 0.33333334
-        value: {x: 0, y: 0, z: 192.0524}
+        value: {x: 0, y: 0, z: 637.8721}
         inSlope: {x: Infinity, y: Infinity, z: Infinity}
         outSlope: {x: Infinity, y: Infinity, z: Infinity}
         tangentMode: 0
       - time: 0.41666666
-        value: {x: 0, y: 0, z: 220.5578}
-        inSlope: {x: 0, y: 0, z: 0}
-        outSlope: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 667.2162}
+        inSlope: {x: Infinity, y: Infinity, z: Infinity}
+        outSlope: {x: Infinity, y: Infinity, z: Infinity}
         tangentMode: 0
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: Equipped Gear/Main-hand Weapon
+    path: Main-hand Weapon
   m_PositionCurves:
   - curve:
       serializedVersion: 2
       m_Curve:
       - time: 0
-        value: {x: 0.23, y: -0.098, z: 1}
+        value: {x: 0.246, y: -0.133, z: 1}
         inSlope: {x: Infinity, y: Infinity, z: Infinity}
         outSlope: {x: Infinity, y: Infinity, z: Infinity}
         tangentMode: 0
       - time: 0.083333336
-        value: {x: 0.328, y: -0.123, z: 1}
+        value: {x: 0.253, y: -0.405, z: -1}
         inSlope: {x: Infinity, y: Infinity, z: Infinity}
         outSlope: {x: Infinity, y: Infinity, z: Infinity}
         tangentMode: 0
       - time: 0.16666667
-        value: {x: 0.182, y: -0.396, z: -1}
+        value: {x: 0.074, y: -0.391, z: -1}
         inSlope: {x: Infinity, y: Infinity, z: Infinity}
         outSlope: {x: Infinity, y: Infinity, z: Infinity}
         tangentMode: 0
       - time: 0.25
-        value: {x: 0.427, y: -0.188, z: 1}
+        value: {x: 0.311, y: -0.354, z: -1}
         inSlope: {x: Infinity, y: Infinity, z: Infinity}
         outSlope: {x: Infinity, y: Infinity, z: Infinity}
         tangentMode: 0
       - time: 0.33333334
-        value: {x: 0.501, y: -0.065, z: 1}
+        value: {x: 0.48, y: -0.01, z: -1}
         inSlope: {x: Infinity, y: Infinity, z: Infinity}
         outSlope: {x: Infinity, y: Infinity, z: Infinity}
         tangentMode: 0
       - time: 0.41666666
-        value: {x: 0.467, y: 0.041, z: 1}
+        value: {x: 0.4, y: 0.093, z: -1}
         inSlope: {x: Infinity, y: Infinity, z: Infinity}
         outSlope: {x: Infinity, y: Infinity, z: Infinity}
         tangentMode: 0
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: Equipped Gear/Main-hand Weapon
-  m_ScaleCurves: []
+    path: Main-hand Weapon
+  m_ScaleCurves:
+  - curve:
+      serializedVersion: 2
+      m_Curve:
+      - time: 0
+        value: {x: 1, y: 1, z: 1}
+        inSlope: {x: Infinity, y: Infinity, z: Infinity}
+        outSlope: {x: Infinity, y: Infinity, z: Infinity}
+        tangentMode: 0
+      - time: 0.083333336
+        value: {x: 1, y: 1, z: 1}
+        inSlope: {x: Infinity, y: Infinity, z: Infinity}
+        outSlope: {x: Infinity, y: Infinity, z: Infinity}
+        tangentMode: 0
+      - time: 0.16666667
+        value: {x: 1, y: 1, z: 1}
+        inSlope: {x: Infinity, y: Infinity, z: Infinity}
+        outSlope: {x: Infinity, y: Infinity, z: Infinity}
+        tangentMode: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    path: Main-hand Weapon
   m_FloatCurves: []
   m_PPtrCurves:
   - curve:
@@ -110,17 +137,23 @@ AnimationClip:
     m_Extent: {x: 0, y: 0, z: 0}
   m_ClipBindingConstant:
     genericBindings:
-    - path: 3788895507
+    - path: 1687735239
       attribute: 1
       script: {fileID: 0}
       classID: 4
       customType: 0
       isPPtrCurve: 0
-    - path: 3788895507
+    - path: 1687735239
       attribute: 4
       script: {fileID: 0}
       classID: 4
       customType: 14
+      isPPtrCurve: 0
+    - path: 1687735239
+      attribute: 3
+      script: {fileID: 0}
+      classID: 4
+      customType: 0
       isPPtrCurve: 0
     - path: 0
       attribute: 0
@@ -160,32 +193,32 @@ AnimationClip:
       serializedVersion: 2
       m_Curve:
       - time: 0
-        value: 0.23
+        value: 0.246
         inSlope: Infinity
         outSlope: Infinity
         tangentMode: 31
       - time: 0.083333336
-        value: 0.328
+        value: 0.253
         inSlope: Infinity
         outSlope: Infinity
         tangentMode: 31
       - time: 0.16666667
-        value: 0.182
+        value: 0.074
         inSlope: Infinity
         outSlope: Infinity
         tangentMode: 31
       - time: 0.25
-        value: 0.427
+        value: 0.311
         inSlope: Infinity
         outSlope: Infinity
         tangentMode: 31
       - time: 0.33333334
-        value: 0.501
+        value: 0.48
         inSlope: Infinity
         outSlope: Infinity
         tangentMode: 31
       - time: 0.41666666
-        value: 0.467
+        value: 0.4
         inSlope: Infinity
         outSlope: Infinity
         tangentMode: 31
@@ -193,39 +226,39 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalPosition.x
-    path: Equipped Gear/Main-hand Weapon
+    path: Main-hand Weapon
     classID: 4
     script: {fileID: 0}
   - curve:
       serializedVersion: 2
       m_Curve:
       - time: 0
-        value: -0.098
+        value: -0.133
         inSlope: Infinity
         outSlope: Infinity
         tangentMode: 31
       - time: 0.083333336
-        value: -0.123
+        value: -0.405
         inSlope: Infinity
         outSlope: Infinity
         tangentMode: 31
       - time: 0.16666667
-        value: -0.396
+        value: -0.391
         inSlope: Infinity
         outSlope: Infinity
         tangentMode: 31
       - time: 0.25
-        value: -0.188
+        value: -0.354
         inSlope: Infinity
         outSlope: Infinity
         tangentMode: 31
       - time: 0.33333334
-        value: -0.065
+        value: -0.01
         inSlope: Infinity
         outSlope: Infinity
         tangentMode: 31
       - time: 0.41666666
-        value: 0.041
+        value: 0.093
         inSlope: Infinity
         outSlope: Infinity
         tangentMode: 31
@@ -233,7 +266,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalPosition.y
-    path: Equipped Gear/Main-hand Weapon
+    path: Main-hand Weapon
     classID: 4
     script: {fileID: 0}
   - curve:
@@ -245,7 +278,7 @@ AnimationClip:
         outSlope: Infinity
         tangentMode: 31
       - time: 0.083333336
-        value: 1
+        value: -1
         inSlope: Infinity
         outSlope: Infinity
         tangentMode: 31
@@ -255,17 +288,17 @@ AnimationClip:
         outSlope: Infinity
         tangentMode: 31
       - time: 0.25
-        value: 1
+        value: -1
         inSlope: Infinity
         outSlope: Infinity
         tangentMode: 31
       - time: 0.33333334
-        value: 1
+        value: -1
         inSlope: Infinity
         outSlope: Infinity
         tangentMode: 31
       - time: 0.41666666
-        value: 1
+        value: -1
         inSlope: Infinity
         outSlope: Infinity
         tangentMode: 31
@@ -273,13 +306,18 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalPosition.z
-    path: Equipped Gear/Main-hand Weapon
+    path: Main-hand Weapon
     classID: 4
     script: {fileID: 0}
   - curve:
       serializedVersion: 2
       m_Curve:
       - time: 0
+        value: 0
+        inSlope: Infinity
+        outSlope: Infinity
+        tangentMode: 31
+      - time: 0.083333336
         value: 0
         inSlope: Infinity
         outSlope: Infinity
@@ -301,14 +339,14 @@ AnimationClip:
         tangentMode: 31
       - time: 0.41666666
         value: 0
-        inSlope: 0
-        outSlope: 0
-        tangentMode: 7
+        inSlope: Infinity
+        outSlope: Infinity
+        tangentMode: 31
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: localEulerAnglesRaw.x
-    path: Equipped Gear/Main-hand Weapon
+    path: Main-hand Weapon
     classID: 4
     script: {fileID: 0}
   - curve:
@@ -319,8 +357,13 @@ AnimationClip:
         inSlope: Infinity
         outSlope: Infinity
         tangentMode: 31
-      - time: 0.16666667
+      - time: 0.083333336
         value: 0
+        inSlope: Infinity
+        outSlope: Infinity
+        tangentMode: 31
+      - time: 0.16666667
+        value: -1
         inSlope: Infinity
         outSlope: Infinity
         tangentMode: 31
@@ -336,49 +379,129 @@ AnimationClip:
         tangentMode: 31
       - time: 0.41666666
         value: 0
-        inSlope: 0
-        outSlope: 0
-        tangentMode: 7
+        inSlope: Infinity
+        outSlope: Infinity
+        tangentMode: 31
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: localEulerAnglesRaw.y
-    path: Equipped Gear/Main-hand Weapon
+    path: Main-hand Weapon
     classID: 4
     script: {fileID: 0}
   - curve:
       serializedVersion: 2
       m_Curve:
       - time: 0
-        value: 245.3987
+        value: 665.7137
+        inSlope: Infinity
+        outSlope: Infinity
+        tangentMode: 31
+      - time: 0.083333336
+        value: 568.3509
         inSlope: Infinity
         outSlope: Infinity
         tangentMode: 31
       - time: 0.16666667
-        value: -235.87369
+        value: 520.1227
         inSlope: Infinity
         outSlope: Infinity
         tangentMode: 31
       - time: 0.25
-        value: 209.7537
+        value: 552.4458
         inSlope: Infinity
         outSlope: Infinity
         tangentMode: 31
       - time: 0.33333334
-        value: 192.0524
+        value: 637.8721
         inSlope: Infinity
         outSlope: Infinity
         tangentMode: 31
       - time: 0.41666666
-        value: 220.5578
-        inSlope: 0
-        outSlope: 0
-        tangentMode: 7
+        value: 667.2162
+        inSlope: Infinity
+        outSlope: Infinity
+        tangentMode: 31
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: localEulerAnglesRaw.z
-    path: Equipped Gear/Main-hand Weapon
+    path: Main-hand Weapon
+    classID: 4
+    script: {fileID: 0}
+  - curve:
+      serializedVersion: 2
+      m_Curve:
+      - time: 0
+        value: 1
+        inSlope: Infinity
+        outSlope: Infinity
+        tangentMode: 31
+      - time: 0.083333336
+        value: 1
+        inSlope: Infinity
+        outSlope: Infinity
+        tangentMode: 31
+      - time: 0.16666667
+        value: 1
+        inSlope: Infinity
+        outSlope: Infinity
+        tangentMode: 31
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    attribute: m_LocalScale.x
+    path: Main-hand Weapon
+    classID: 4
+    script: {fileID: 0}
+  - curve:
+      serializedVersion: 2
+      m_Curve:
+      - time: 0
+        value: 1
+        inSlope: Infinity
+        outSlope: Infinity
+        tangentMode: 31
+      - time: 0.083333336
+        value: 1
+        inSlope: Infinity
+        outSlope: Infinity
+        tangentMode: 31
+      - time: 0.16666667
+        value: 1
+        inSlope: Infinity
+        outSlope: Infinity
+        tangentMode: 31
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    attribute: m_LocalScale.y
+    path: Main-hand Weapon
+    classID: 4
+    script: {fileID: 0}
+  - curve:
+      serializedVersion: 2
+      m_Curve:
+      - time: 0
+        value: 1
+        inSlope: Infinity
+        outSlope: Infinity
+        tangentMode: 31
+      - time: 0.083333336
+        value: 1
+        inSlope: Infinity
+        outSlope: Infinity
+        tangentMode: 31
+      - time: 0.16666667
+        value: 1
+        inSlope: Infinity
+        outSlope: Infinity
+        tangentMode: 31
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    attribute: m_LocalScale.z
+    path: Main-hand Weapon
     classID: 4
     script: {fileID: 0}
   m_EulerEditorCurves:
@@ -389,7 +512,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalEulerAngles.x
-    path: Equipped Gear/Main-hand Weapon
+    path: Main-hand Weapon
     classID: 4
     script: {fileID: 0}
   - curve:
@@ -399,7 +522,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalEulerAngles.y
-    path: Equipped Gear/Main-hand Weapon
+    path: Main-hand Weapon
     classID: 4
     script: {fileID: 0}
   - curve:
@@ -409,7 +532,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalEulerAngles.z
-    path: Equipped Gear/Main-hand Weapon
+    path: Main-hand Weapon
     classID: 4
     script: {fileID: 0}
   m_HasGenericRootTransform: 0

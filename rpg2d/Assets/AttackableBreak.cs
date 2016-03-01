@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using CharacterControl;
 
 public class AttackableBreak : Attackable {
 
@@ -18,7 +19,7 @@ public class AttackableBreak : Attackable {
 	
 	}
 
-    public override void OnAttack(ItemTypes item)
+    public override void OnAttack(BaseCharacterController Attacker)
     {
 
         if(colliderReference)

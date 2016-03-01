@@ -2,6 +2,7 @@
 using System.Collections;
 using Monsters;
 using Interactions;
+using CharacterControl;
 namespace Design
 { 
 
@@ -19,6 +20,8 @@ namespace Design
             return inter;
         }
 
+      
+
         public static PlayerStats StatsModule(GameObject SubObject)
         {
             GameObject obj = null;
@@ -33,18 +36,18 @@ namespace Design
             return stats;
         }
 
-        public static Monster MonsterModule(GameObject GetFrom)
+        public static BaseCharacterController CharacterModule(GameObject GetFrom)
         {
             GameObject obj = null;
-            Monster monst = null;
+            CharacterControl.BaseCharacterController character = null;
             Transform parent = GetFrom.transform.parent;
             if (parent)
-                obj = parent.Find("AI").gameObject;
+                obj = parent.Find("Controls").gameObject;
 
             if (obj)
-                monst = obj.GetComponent<Monster>();
-
-            return monst;
+                character = obj.GetComponent<BaseCharacterController>();
+           
+            return character;
         }
 
         public static AnimationController AnimationModule(GameObject GetFrom)

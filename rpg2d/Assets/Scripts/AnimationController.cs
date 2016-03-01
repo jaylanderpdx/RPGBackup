@@ -3,13 +3,33 @@ using System.Collections;
 
 public class AnimationController : MonoBehaviour {
 
-    Animator animationReference;
+    public Animator animationReference;
     
 
+    public void PlayerDyingEnded()
+    {
+      //  Time.timeScale = 0f;
+        UIHealthEffect.instance.PlayerDiedEffect();
+        //animationReference.SetBool("dying", false);
+        animationReference.enabled = false;
+      
+    }
+
+    public void MonsterEndedDying()
+    {
+        animationReference.SetBool("dying", false);
+        animationReference.enabled = false;
+    }
+
+    public void DoDeathAnimation()
+    {
+        animationReference.SetBool("dying", true);
+    }
 
    public void DoAttackAnimation()
     {
        animationReference.SetTrigger("attacking");
+
     }
 
     void Awake()

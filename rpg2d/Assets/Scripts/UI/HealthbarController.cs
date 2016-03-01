@@ -28,21 +28,25 @@ public class HealthbarController : MonoBehaviour {
     void Update()
     {
 
-
-
-        Transform obj = healthbarImage.gameObject.transform;
-
-
-
-        float ratio = (float)(healthStats.currentHealth) / (float)(healthStats.maxHealth);
-        obj.localScale = new Vector3(ratio, obj.localScale.y, obj.localScale.z);
-
-        if (healthText)
+        if (healthbarImage)
         {
-            float fraction = (ratio * 100.00f);
-            int percent = (int)fraction;
-            healthText.text = percent.ToString() + "%";
+
+            Transform obj = healthbarImage.gameObject.transform;
+
+
+
+            float ratio = (float)(healthStats.currentHealth) / (float)(healthStats.maxHealth);
+            obj.localScale = new Vector3(ratio, obj.localScale.y, obj.localScale.z);
+
+            if (healthText)
+            {
+                float fraction = (ratio * 100.00f);
+                int percent = (int)fraction;
+                healthText.text = percent.ToString() + "%";
+
+            }
+
 
         }
-    }
+        }
 }
